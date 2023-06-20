@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+Zavrsni test sa kursa Java Web Programiranje
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Završni test - JWD 59/60 Korišćenjem radnih okvira Spring Boot, React i Bootstrap razviti Web aplikaciju za praćenje rezultata na Svetskom Prvenstvu. 1.1 Aplikacija bi trebalo da obezbedi rad sa sledećim entitetima, uz čije atribute su data i ograničenja na nivou baze podataka: Reprezentacija: Id - identifikator Naziv - tekstualna vrednost, obavezna, jedinstvena Skraceni naziv - tekstualna vrednost, obavezna, jedinstvena, troslovna oznaka Igraci - lista igrača koji igraju za ovu reprezentaciju
 
-## Available Scripts
+Utakmica: Id - identifikator Reprezentacija A - veza do reprezentacije Reprezentacija B - veza do reprezentacije Broj golova A - celobrojna vrednost Broj golova B - celobrojna vrednost
 
-In the project directory, you can run:
+Igrac: Id - identifikator Ime - tekstualna vrednost, obavezna Prezime - tekstualna vrednost, obavezna Postignuti golovi - celobrojna vrednost
 
-### `npm start`
+U okviru jedne utakmice igraju dve reprezentacije, podrazumeva se da ne može da se desi SRB vs SRB. Svaka reprezentacija igra na jednoj ili više utakmica, dok na jednoj utakmici reprezentacija A (i reprezentacija B) mogu biti samo po jedna reprezentacija. 1.2 Pomoću radnog okvira Spring Boot implementirati sledeći REST API: GET /api/igraci - preuzimanje svih igrača svi GET /api/reprezentacije - preuzimanje svih reprezentacija svi GET /api/utakmice - preuzimanje svih utakmica (paginirano) svi GET /api/utakmice/{id} - preuzimanje utakmice po zadatom id-u admin, user POST /api/utakmice - dodavanje nove utakmice admin, user PUT /api/utakmice/{id} - izmena postojeće utakmice admin, user DELETE /api/utakmice/{id} – brisanje postojeće utakmice admin
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1.3 Na nivou API-ja validirati sledeće stavke: Naziv - tekstualna vrednost, ne sme biti prazan string Skraceni naziv - tekstualna vrednost koja sadrži tačno 3 karaktera
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2.1 Obezbediti unos nove utakmice na zasebnoj stranici. Prilikom kreiranja nove utakmice korisnik bira dve reprezentacije koje igraju na pomenutoj utakmici, a broj golova novokreirane utakmice za oba tima je uvek 0. Na stranici za prikaz i pretragu utakmica postoji dugme za prelazak na stranicu za unos. Nakon unosa vrednosti u polja prikazana na slici 1 i klika na dugme ‘Kreiraj utakmicu‘, ona se preko API-ja dodaje u aplikaciju i potom se korisnik vraća na stranicu za prikaz i pretragu.
 
-### `npm test`
+2.2 Obezbediti brisanje utakmica. Ova funkcionalnost dostupna je samo adminima, nakon klika na dugme “obriši” u tabeli za prikaz svih utakmica, ona se briše iz aplikacije i uklanja iz tabele.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.3 Obezbediti paginirani prikaz podataka. Dugme ‘Prethodna’ i dugme ‘Sledeća’ iznad tabele za prikaz utakmica omogućuju promenu stranice. Ukoliko se korisnik nalazi na prvoj stranici onemogućiti dugme prethodno, a ukoliko se nalazi na poslednjoj onemogućiti dugme sledeće. Paginacija se vrši na back-end delu aplikacije.
 
-### `npm run build`
+2.4 Obezbediti pretragu utakmica, preko forme za filtriranje Prilikom pretrage korisnik može da filtrira na osnovu reprezentacije A i/ili reprezentacije B. Pronalaze se i prikazuju utakmice koje zadovoljavaju ove kriterijume. Ukoliko korisnik neko polje ne unese, vrednost tog polja se ignoriše u pretrazi. Pretraga se vrši na back-end delu aplikacije.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2.5 Kompletnu izmenu podataka o utakmici nije potrebno realizovati na front-end strani, putem popunjene forme. Izmenu implementirati na back-end delu aplikacije.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Implementirati funkcionalnost za promenu rezultata na postojećoj utakmici: a) Klikom na dugme “A + 1”, povećava se broj golova za tim A na datoj utakmici. Nakon toga se korisnik prebacuje na drugu stranicu gde ima samo jedan drop-down meni, gde može da odabere jednog od igrača iz tima A koji je postigao gol b) Klikom na dugme “B + 1”, povećava se broj golova za tim B na datoj utakmici. Nakon toga se korisnik prebacuje na drugu stranicu gde ima samo jedan drop-down meni, gde može da odabere jednog od igrača iz tima B koji je postigao gol c) Nakon što je odabran igrač, u bazi podataka treba ažurirati broj golova koji je taj igrač postigao.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Implementirati prikaz najboljeg strelca. Klikom na dugme “Najbolji strelac” koje se nalazi ispod tabele sa svim utakmicama treba korisniku prikazati koji igrač ima najviše golova, i koliko golova je postigao. Za ovaj prikaz nije potrebno praviti nove elemente na frontendu, već se informacije mogu ispisati pomoću jednostavnog alert-a. Ako više igrača deli mesto najboljeg strelca, prikazati bilo kog od njih. Aplikacija bi trebalo da bude obezbeđena i sa back-end, i sa front-end strane što znači da samo prijavljeni korisnik može da joj pristupi. Korisnik se prijavljuje na sistem preko login stranice. Za ovaj deo, dozvoljeno je koristiti postojeće materijale kao takve. HTTPS nije potrebno iskonfigurisati. Role koje mogu pristupiti određenim endpoint-ima aplikacije su date kod definicije API-a. Obavezno uz rešenje priložiti i test podatke za bazu podataka.
